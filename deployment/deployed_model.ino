@@ -179,8 +179,8 @@ void print_inference_result(ei_impulse_result_t result) {
   }
 
   // int tmpIndex = find_max_index(tmpArray, 5U);
-  ei_printf(" %s", ei_classifier_inferencing_categories[tmpIndex]);
-  ei_printf("%d", static_cast<int>(result.classification[tmpIndex].value * 100));
+  // ei_printf(" %s", ei_classifier_inferencing_categories[tmpIndex]);
+  // ei_printf("%d", static_cast<int>(result.classification[tmpIndex].value * 100));
 #endif
   Serial.println();
   // Print anomaly result (if it exists)
