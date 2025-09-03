@@ -100,14 +100,13 @@ void setup(void) {
 void loop() {
 
 
-  int8_t mpuStatus = 0;
   if(digitalRead(USER_BTN) == LOW){
     delay(50);
     int features[FEATURES_HEIGHT][FEATURES_WIDTH][FEATURES_CHANNELS];
     
     // Gathering data from the accelerometer
     float32_t xData[X_DATA_LEN], yData[X_DATA_LEN], zData[Z_DATA_LEN];
-    (void)read_mpu6050_data(xData, yData, zData);
+    read_mpu6050_data(xData, yData, zData);
 
       // Extracting the features from the accelerometer data
       extract_features(xData, yData, zData, features);
