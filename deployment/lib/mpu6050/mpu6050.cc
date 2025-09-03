@@ -19,14 +19,7 @@ void mpu6050_setup(void){
   // Setting the MPU range and filter bandwidth
   mpu.setAccelerometerRange(MPU6050_RANGE_8_G);
   mpu.setFilterBandwidth(MPU6050_BAND_21_HZ);
-  #ifdef MOTION_TRIGGERED
-  mpu.setMotionDetectionThreshold(20);
-  mpu.setMotionDetectionDuration(5);
-  mpu.setInterruptPinLatch(true);	// Keep it latched.  Will turn off when reinitialized.
-  mpu.setInterruptPinPolarity(true);
-  mpu.setMotionInterrupt(true);
-  #endif
-
+   
   delay(100);
 }
 static void print_mpu6050_values(sensors_event_t a, sensors_event_t g, unsigned long last_ms, unsigned long timestamp){
@@ -38,13 +31,9 @@ static void print_mpu6050_values(sensors_event_t a, sensors_event_t g, unsigned 
 
 
 }
-int read_mpu6050_data(float32_t xData[], float32_t yData[], float32_t zData[]){
+void read_mpu6050_data(float32_t xData[], float32_t yData[], float32_t zData[]){
 
-   int8_t returnVal = 1;
-   #ifdef MOTION_TRIGGERED
-   int8_t tmpStatus = 0;
-   if(mpu.getMotionInterruptStatus()){
-   #endif 
+   
       sensors_event_t a, g, temp;
       last_interval_ms = millis();
       unsigned long timestamp = 0;
@@ -57,17 +46,5 @@ int read_mpu6050_data(float32_t xData[], float32_t yData[], float32_t zData[]){
          
          while(millis() < timestamp + SAMPLING_PERIOD);  
       }
-      #ifdef MOTION_TRIGGERED
-      tmpStatus = DATA_COLLECTED;
       
-   }
-   if(tmpStatus > 1){
-      returnVal = 1;
-   }
-   else {
-      returnVal = 2;
-   }
-   #endif
-
-   return returnVal;
 }
