@@ -1,5 +1,5 @@
 # Gesture Recognition Project
-This project is a continuous motion recognition system that can detect and classify harry potter wand movements. This project utilised an MPU6050 accelerometer to gather movement data and Edge Impulse to train and deployment the model on the Nucleo-F401RE development board. 
+This project is a motion recognition system that can detect and classify harry potter wand movements. This project utilised an MPU6050 accelerometer to gather movement data and Edge Impulse to train and deployment the model on the Nucleo-F401RE development board. 
 
 Using the accelerometer data, the model can identify the following spells:
 1. __Incendio__
